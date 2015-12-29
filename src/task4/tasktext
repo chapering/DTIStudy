@@ -1,0 +1,2 @@
+Select the tensor shape associated with the tagged point. Type 1,2 or 3 for your
+choice (1: sphere, 2:linear, 3:planar).
