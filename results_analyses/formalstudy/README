@@ -1,0 +1,73 @@
+==========================================================
+Data item interpretation 
+==========================================================
+
+I. common columns
+Pid		- participant id
+Tid		- task id
+Torder	- task sequence number
+Res		- seeding resolution
+Dcls	- data class
+Did		- data id
+Bname	- bundle name
+Time	- task completion time (currently, from after data being loaded to "next" button click)
+htime	- hesitation time (from the last chosen option highlight to "next" button click)
+Correct - correctness, 1 - correct, 2 - wrong
+Ans		- answer to a task
+Key		- task key
+
+
+II. task-specific columns
+
+For heterogeneous columns "ec1 ec2 ec3 ec4 ec5" in dataSAS.txt only,
+these columns indicate different set of data properties for different tasks.
+
+For task 1
+==============================
+ec1 - FA difference between two boxes		
+ec2 - average FA of voxels in box 1	
+ec3 - number of fibers in box 1
+ec4 - average FA of voxels in box 2
+ec5 - number of fibers in box 2
+
+
+For task 2
+==============================
+ec1 - number of fibers to be traced (i.e. number of the marked fibers)
+ec2 - 0
+ec3 - 0
+ec4 - 0
+ec5 - 0
+
+For task 3
+==============================
+ec1 - number of fibers marked 
+ec2 - 0
+ec3 - 0
+ec4 - 0
+ec5 - 0
+
+For task 4
+==============================
+ec1 - distance from user's click to the lesion center
+ec2 - size of lesion area
+ec3 - number of fibers in the lesion (i.e. number of the broken fibers)
+ec4 - 0
+ec5 - 0
+
+For task 5
+==============================
+ec1 - number of fibers in member group
+ec2 - number of fibers in alien group
+ec3 - 0
+ec4 - 0
+ec5 - 0
+
+For task 6
+==============================
+ec1 - size difference percentage between the two symmetrical bundles
+ec2 - number of fibers on the left side
+ec3 - number of fibers on the right side
+ec4 - 0
+ec5 - 0
+
