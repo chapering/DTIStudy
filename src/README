@@ -1,0 +1,170 @@
+1. How to Build
+-------------------------------------------------------------------------------
+To build an executable, use one of the following:
+	- make all : build all targets that support interaction of box selection,
+	  including 
+		ismRender - (for interactive .sm render) load the .sm output of tubegen
+					and directly render the streamtube geometry.
+		itubeRender - (for iteractive tube render) load the .data output,
+					construct to build tubes from streamlines and then render
+					the calculated tube geometry.
+
+	- make t=xxx : build a specific other program than what are included in the
+	  "all" target group, that support interaction of box selection. This is
+		used to build a new openGL program that is not listed in the "all"
+		target group.
+
+	* there is also another makefile named Makefile.glmoth kept for building
+	  targets that do not embed box-based interaction, including 
+		smRender - noninteractive version of ismRender
+		tubeRender - noninteractive version of tubeRender
+		stlineRender - the streamline render, also take as input the .data
+						output of tubegen.
+		polylineRender - the previous  version of stlineRender, which is almost
+						the same as stlineRender but the rotation axes are the
+						default grand-fixed coordinate system rather than the 
+						local object coordinate system used in stlineRender, 
+						as is more preferred actually.
+
+
+2. How to Run
+-------------------------------------------------------------------------------
+There are detailed instruction on usage for each of these executables, triggered
+by " --help " or "-h" option only.
+
+Concisely, these programs are categorized into two groups in terms of the
+formats they are accepting :
+
+[i]smRender loads .data file among the outputs of tubegen, which contains
+		geometry of mere streamline vertices and colors. so to give an input
+		geometry, use option like "-f xxxx.data"
+
+[i]tubeRender, stlineRender and polylineRender all load .sm file among the
+		outputs of tubegen, which contains vertices, faces and colors for the 
+		prepared streamtubes that are build from streamlines. so to given an
+		input geometry, use option like "-f xxxx.sm"
+
+
+For other assistant options, see "-h" or "--help".
+
+3. How to Use or Interact
+-------------------------------------------------------------------------------
+major common interaction includes:
+
+	'c' - switch between two coloring schemes, one is using the original colors
+			provided in the input .data, separate color for each vertex; another 
+			is to apply a uniform color randomly generated for all vertices.
+
+	'g' - randomly change the uniform color mentioned above
+	'd' - streamline direction color encoding
+	'v' - switch between two normal application scheme, one is using each vertex
+			coordinate as its normal, another is to calculate a normal for each
+			face and force the face normal for each of its vertices.
+
+
+lastly, for the box-selection supporting renders, e.g. ismRender and
+itubeRender:
+
+	- when mouse clicks inside the selection box, box manipulation will start,
+	taking priority over the same input for the global interaction.
+
+4. Global Interactions
+-------------------------------------------------------------------------------
+There are other interactions available in all these programs as well, which is
+inherited from the simple GL program moth:
+
+
+. default keyword response 
+	- ESC to exit
+	- '9' Shading model switching
+	- '0' simulating random key pressing
+	- a/A for increasing the red channel
+	- d/D for descreasing the red channel 
+	- w/W for increasing the green channel
+	- x/X for descreasing the green channel
+	- s/S for increasing the blue channel
+	- f/F for descreasing the blue channel
+      in the color applied in drawing vertices
+    - j/J for rotating clockwise around X axis
+    - l/L for rotating anticlockwise around X axis
+    - i/I for rotating clockwise around Y axis
+    - ,/< for rotating anticlockwise around Y axis
+    - h/H for rotating clockwise around Z axis
+    - k/K for rotating anticlockwise around Z axis
+    - Up arrow for translating upwards (on Y axis)
+    - Down arrow for translating downwards (on Y axis)
+    - Left arrow for translating leftwards (on X axis)
+    - Right arrow for translating rightwards (on X axis)
+    - 'z' for translating backwards (on Z axis)
+    - 'Z' for translating forwards (on Z axis)
+    - Whitespace for resetting to original positions
+    - '=', meaning '+', for zoom in
+    - '-' for zoom out
+    
+. default mouse response while clicking
+	- left button for rotating, cooperating with clicking
+	- right button for translating, cooperating with clicking
+	- middle button for lighting switching and positioning
+. default mouse response while moving
+	- left button for rotating, cooperating with clicking
+	- right button for translating, cooperating with clicking
+	- middle button (the roller/wheel) for zooming
+
+* any of these interaction inputs can be overwritten by the its descendants.
+
+-------------------------------------------------------------------------------
+contact : haipeng.cai
+
+
+As the result of 3D tractography, geometric primitives, which are directly
+meant for streamlines, are inputed into the visualization procedure we use
+currently. By manipulating the streamline geometry, streamtubes are firstly
+generated according to given level of detail through wrapping group of quads
+perpendicular to each of the segments on the streamline. With the geometry of
+the constructed streamtubes, 3D fiber tracts are rendered as the basic
+visulization, on the basis of which an orientation color encoding scheme is
+following to build the color representation of fiber tubes in terms of the
+change in the orientation of the DTI fibers. The coloring is calculated by
+mapping the fragmental vector in the anatomical coordinate system to that in the
+RGB color space, where a strict symmetry on the left-right orientation is kept
+to be in accordance with the anatomical symmetry of the two hemispheres, and the
+change of all orientations are encoding by the change of colors in a continuous
+manner. To be chosen from, several different orientation coloring schemes are
+provided in the visualization in order to meet different needs possibly being
+the case.
+
+In order to support efficient and accurate ROI definition, one of the 
+visualization interaction technique, multiple box selection is integrated to
+help focus on specific region of the brain. As a 3D interactive visulalization
+of DTI tractography, other common interaction techniques like user input
+response and rendering and interaction mode switching are also implemented to
+help navigate throughout the streamtube-visualized brain model.
+
+----------------------------------------------------------------------------------------------------------------
+As the result of 3D tractography, geometric primitives, which are directly
+meant for streamlines, are inputed into the visualization procedure we use
+currently. By manipulating the streamline geometry, streamtubes are firstly
+generated according to given level of detail through wrapping group of quads
+perpendicular to each of the segments on the streamline. With the geometry of
+the constructed streamtubes, 3D fiber tracts are rendered as the basic
+visulization, on the basis of which an orientation color encoding scheme is
+following to build the color representation of fiber tubes in terms of the
+change in the orientation of the DTI fibers. The coloring is calculated by
+mapping the fragmental vector in the anatomical coordinate system to that in the
+RGB color space, where a strict symmetry on the left-right orientation is kept
+to be in accordance with the anatomical symmetry of the cerebral hemispheres,
+and the change of all orientations are encoded by the change of colors in a
+continuous manner. To be chosen from, several different orientation coloring
+schemes are provided in the visualization in order to meet different needs, as
+is possibly the case.
+
+In order to support efficient and accurate ROI definition, one of the
+visualization interaction techniques, multiple box selection is integrated to
+help focus on specific region of the brain. As a 3D interactive visulalization
+of DTI tractography, other common interaction techniques like user input
+response and rendering and interaction mode switching are also implemented to
+help navigate throughout the 3D brain model.
+----------------------------------------------------------------------------------------------------------------
+
+
+

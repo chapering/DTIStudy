@@ -1,0 +1,8 @@
+[Mouse Action]
+
+Left Button      : rotate around X/Y axis (or stretching box)
+Ctrl+Left Button : rotate around Z axis
+
+
+[Keyboard Mapping]
+Space            : go to next task
