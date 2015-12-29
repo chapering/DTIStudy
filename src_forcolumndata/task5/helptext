@@ -1,0 +1,10 @@
+[Mouse Action]
+
+Left Button      : rotate around X/Y axis 
+Ctrl+Left Button : rotate around Z axis
+Right Button     : move box along X/Y axis
+Ctrl+Right Button: move box along Z axis 
+
+
+[Keyboard Mapping]
+Space            : go to next task
